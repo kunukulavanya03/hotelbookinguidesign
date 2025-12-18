@@ -6,7 +6,7 @@ Backend API for hotelbookinguidesign
 
 - **Frontend**: React
 - **Backend**: FastAPI + SQLAlchemy
-- **Frontend Source**: GitHub ([Repository](https://github.com/HimaShankarReddyEguturi/Hotelbookinguidesign))
+- **Frontend Source**: GitHub ([Repository](https://github.com/HimaShankarReddyEguturi/Hotelbookinguidesign.git))
 
 ## Project Structure
 
@@ -45,12 +45,12 @@ cd backend
 
 - Hotel Search
 - Hotel Details
-- Booking System
+- Booking Management
 
 ## API Endpoints
 
-- `GET /hotels/search?location={}&checkin={}&checkout={}` - Search for hotels based on location and date range
-- `GET /hotel/{id}` - View details of a specific hotel
+- `GET /hotels/search` - Search for hotels based on location and date range
+- `GET /hotel/{id}` - View detailed information about a hotel
 - `POST /bookings` - Book a hotel room
 
 ## License
