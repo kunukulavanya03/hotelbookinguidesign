@@ -15,8 +15,8 @@ load_dotenv()
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Design_Using_Fastapi_And_Sqlalchemy. API",
-    description="Backend API for this_project_aims_to_develop_a_backend_api_for_the_hotel_booking_user_interface_design_using_fastapi_and_sqlalchemy.",
+    title="This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Designed_With_React_And_Vite_As_The_Frontend_Stack. API",
+    description="Backend API for this_project_aims_to_develop_a_backend_api_for_the_hotel_booking_user_interface_designed_with_react_and_vite_as_the_frontend_stack.",
     version="1.0.0"
 )
 
@@ -31,11 +31,11 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Design_Using_Fastapi_And_Sqlalchemy. API", "status": "running"}
+    return {"message": "Welcome to This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Designed_With_React_And_Vite_As_The_Frontend_Stack. API", "status": "running"}
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy", "service": "this_project_aims_to_develop_a_backend_api_for_the_hotel_booking_user_interface_design_using_fastapi_and_sqlalchemy."}
+    return {"status": "healthy", "service": "this_project_aims_to_develop_a_backend_api_for_the_hotel_booking_user_interface_designed_with_react_and_vite_as_the_frontend_stack."}
 
 # API endpoints inferred from frontend
 app.include_router(api_router)
