@@ -1,4 +1,4 @@
-# This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Design_Using_Fastapi_And_Sqlalchemy. Backend API
+# This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Designed_With_React_And_Vite_As_The_Frontend_Stack. Backend API
 
 Complete FastAPI backend with authentication, database models, and API endpoints.
 
