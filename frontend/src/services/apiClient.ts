@@ -26,17 +26,17 @@ async function apiRequest(method, path, data) {
 
 // Known endpoints derived from the project spec
 export const endpoints = {
-  "/hotels/search": {
+  "/api/hotels/search?location={location}&checkin={date}&checkout={date}": {
     "method": "GET",
-    "path": "/hotels/search"
+    "path": "/api/hotels/search?location={location}&checkin={date}&checkout={date}"
   },
-  "/hotel/{id}": {
+  "/api/hotels/{hotel_id}": {
     "method": "GET",
-    "path": "/hotel/{id}"
+    "path": "/api/hotels/{hotel_id}"
   },
-  "/bookings": {
+  "/api/bookings": {
     "method": "POST",
-    "path": "/bookings"
+    "path": "/api/bookings"
   }
 };
 
