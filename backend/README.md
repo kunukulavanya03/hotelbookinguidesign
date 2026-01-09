@@ -1,71 +1,27 @@
-# This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Designed_With_React_And_Vite_As_The_Frontend_Stack. Backend API
+# Hotelbookinguidesign_Is_A_Backend_Api_Designed_To_Support_The_Frontend_Application_Developed_With_React._The_Backend_Will_Use_Fastapi_For_Its_Lightweight_And_Fast_Performance,_Paired_With_Sqlalchemy_For_Database_Operations._This_Api_Will_Handle_User_Authentication,_Booking_Management,_And_Room_Availability. API
 
-Complete FastAPI backend with authentication, database models, and API endpoints.
+Generated from Impact Analysis specifications.
 
-## Features
+## Endpoints
 
-- FastAPI framework with automatic OpenAPI documentation
-- JWT authentication with user registration/login
-- SQLAlchemy ORM with database models
-- Pydantic schemas for request/response validation
-- CORS middleware for frontend integration
-- Comprehensive error handling
-- Database migrations with Alembic
+- PUT /30
+
+## Models
+
+- Fields
+- Data
+- Database
+- Restaurant
+- User
+- Order
+- Function
 
 ## Setup
 
-1. Install dependencies:
 ```bash
 pip install -r requirements.txt
-```
-
-2. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-3. Run the application:
-```bash
 python main.py
 ```
 
-Or with uvicorn:
-```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-## API Documentation
-
-Once running, visit:
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
-
-## API Endpoints
-
-### Authentication
-- POST `/auth/register` - Register new user
-- POST `/auth/login` - Login user
-
-### Core Endpoints
-- GET `/api/items` - Get all items
-- POST `/api/items` - Create new item
-- PUT `/api/items/<built-in function id>` - Update item
-- DELETE `/api/items/<built-in function id>` - Delete item
-
-## Database
-
-The application uses SQLite by default. To use PostgreSQL:
-
-1. Install PostgreSQL
-2. Update DATABASE_URL in .env:
-```
-DATABASE_URL=postgresql://user:password@localhost/dbname
-```
-
-## Testing
-
-Run tests with:
-```bash
-pytest
-```
+API runs on http://localhost:8000
+Docs available at http://localhost:8000/docs
