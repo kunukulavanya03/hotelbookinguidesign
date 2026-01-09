@@ -1,26 +1,16 @@
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
-from dotenv import load_dotenv
-import asyncio
-import json
-import os
-from typing import List, Dict
+import models
+import schemas
 from database import get_db, engine
-from models import Base
-from schemas import *
-from routes import router as api_router
-import logging
-
-load_dotenv()
 
 # Create tables
-Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Designed_With_React_And_Vite_As_The_Frontend_Stack. API",
-    description="Realtime backend API for this_project_aims_to_develop_a_backend_api_for_the_hotel_booking_user_interface_designed_with_react_and_vite_as_the_frontend_stack. with WebSocket support",
+    title="Hotelbookinguidesign_Is_A_Backend_Api_Designed_To_Support_The_Frontend_Application_Developed_With_React._The_Backend_Will_Use_Fastapi_For_Its_Lightweight_And_Fast_Performance,_Paired_With_Sqlalchemy_For_Database_Operations._This_Api_Will_Handle_User_Authentication,_Booking_Management,_And_Room_Availability. API",
+    description="Generated from Impact Analysis specifications",
     version="1.0.0"
 )
 
@@ -33,103 +23,34 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --------------------- REALTIME DATA MANAGER ---------------------
-class DataManager:
-    def __init__(self):
-        self.messages: List[Dict] = [
-            {"user": "System", "text": "Welcome to This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Designed_With_React_And_Vite_As_The_Frontend_Stack.!", "time": "00:00"}
-        ]
-        self.online_count: int = 0
-        self.connections: List[WebSocket] = []
-
-data_manager = DataManager()
-
-# --------------------- WEBSOCKET CONNECTION MANAGER ---------------------
-class ConnectionManager:
-    async def connect(self, ws: WebSocket):
-        await ws.accept()
-        data_manager.connections.append(ws)
-        data_manager.online_count += 1
-        await self.broadcast({"type": "online_count", "count": data_manager.online_count})
-
-    def disconnect(self, ws: WebSocket):
-        if ws in data_manager.connections:
-            data_manager.connections.remove(ws)
-        data_manager.online_count = len(data_manager.connections)
-
-    async def broadcast(self, data: dict):
-        for ws in data_manager.connections[:]:
-            try:
-                await ws.send_json(data)
-            except:
-                if ws in data_manager.connections:
-                    data_manager.connections.remove(ws)
-
-manager = ConnectionManager()
-
-# --------------------- WEBSOCKET ENDPOINT ---------------------
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await manager.connect(websocket)
-    # Send initial data to newly connected client
-    await websocket.send_json({
-        "type": "init",
-        "messages": data_manager.messages,
-        "online_count": data_manager.online_count
-    })
-
-    try:
-        while True:
-            text = await websocket.receive_text()
-            payload = json.loads(text)
-
-            # Handle new message
-            if payload.get("action") == "send_message":
-                new_msg = {
-                    "user": payload.get("user", "Anonymous"),
-                    "text": payload["text"],
-                    "time": payload.get("time", "Now")
-                }
-                data_manager.messages.append(new_msg)
-                await manager.broadcast({
-                    "type": "new_message",
-                    "message": new_msg
-                })
-
-            # Add more actions here as needed
-            # elif payload.get("action") == "custom_action": ...
-
-    except WebSocketDisconnect:
-        manager.disconnect(websocket)
-        await manager.broadcast({"type": "online_count", "count": data_manager.online_count})
-    except Exception as e:
-        print("WebSocket Error:", e)
-        manager.disconnect(websocket)
-        await manager.broadcast({"type": "online_count", "count": data_manager.online_count})
-
-# --------------------- REST API ENDPOINTS ---------------------
 @app.get("/")
-def read_root():
-    return {"message": "Welcome to This_Project_Aims_To_Develop_A_Backend_Api_For_The_Hotel_Booking_User_Interface_Designed_With_React_And_Vite_As_The_Frontend_Stack. API", "status": "running", "features": ["REST API", "WebSocket", "Realtime"]}
-
-@app.get("/health")
-def health_check():
-    return {"status": "healthy", "service": "this_project_aims_to_develop_a_backend_api_for_the_hotel_booking_user_interface_designed_with_react_and_vite_as_the_frontend_stack.", "connections": data_manager.online_count}
-
-@app.get("/api/messages")
-def get_messages():
-    return {"messages": data_manager.messages, "count": len(data_manager.messages)}
-
-@app.get("/api/stats")
-def get_stats():
+def root():
     return {
-        "online_users": data_manager.online_count,
-        "total_messages": len(data_manager.messages),
-        "active_connections": len(data_manager.connections)
+        "message": "API is running",
+        "endpoints": 1,
+        "models": 7
     }
 
-# Include additional API routes
-app.include_router(api_router, prefix="/api")
+@app.get("/health")
+def health():
+    return {"status": "healthy", "service": "hotelbookinguidesign_is_a_backend_api_designed_to_support_the_frontend_application_developed_with_react._the_backend_will_use_fastapi_for_its_lightweight_and_fast_performance,_paired_with_sqlalchemy_for_database_operations._this_api_will_handle_user_authentication,_booking_management,_and_room_availability."}
+
+# Generated API endpoints
+@app.put("/30")
+def 30(id: int, item_data: schemas.FieldsCreate, db: Session = Depends(get_db)):
+    # Update item
+    item = db.query(models.Fields).filter(models.Fields.id == id).first()
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    
+    for key, value in item_data.dict().items():
+        setattr(item, key, value)
+    
+    db.commit()
+    db.refresh(item)
+    return item
+
+
 
 if __name__ == "__main__":
     import uvicorn
