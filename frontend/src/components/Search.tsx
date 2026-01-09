@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Search as SearchIcon, MapPin, Calendar, Users, Star, Wifi, Coffee, Dumbbell, Filter, SlidersHorizontal } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 
 interface SearchProps {
   onNavigate: (hotel: any) => void;
@@ -57,7 +58,25 @@ export function Search({ onNavigate }: SearchProps) {
     },
   ];
 
-  const filters = ['All', 'Luxury', 'Budget', 'Business', 'Boutique'];
+  const [filters, setFilters] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const result = await getItems();
+        setData(result);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
 
   return (
     <div className="min-h-screen pb-12">
