@@ -9,6 +9,7 @@ import {
 } from "lucide-react@0.487.0";
 
 import { cn } from "./utils";
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 
 function Select({
   ...props
