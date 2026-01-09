@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CreditCard, Lock, Check, Calendar, User, Home, Mail, Phone, Shield, MessageCircle } from 'lucide-react';
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 
 interface PaymentProps {
   booking: any;
@@ -10,6 +11,24 @@ export function Payment({ booking, onNavigate }: PaymentProps) {
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'paypal'>('card');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getItems();
+        setData(data);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
 
   const handlePayment = () => {
     setIsProcessing(true);
