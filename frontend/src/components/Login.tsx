@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { LogIn, Mail, Lock, MessageCircle } from 'lucide-react';
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 
 interface LoginProps {
   onNavigate: () => void;
@@ -7,6 +8,24 @@ interface LoginProps {
 
 export function Login({ onNavigate }: LoginProps) {
   const [isLogin, setIsLogin] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getItems();
+        setData(data);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
