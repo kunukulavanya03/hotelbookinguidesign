@@ -1,20 +1,33 @@
 import { Search, Calendar, MessageCircle, User, Bell, Hotel, MapPin, Star, TrendingUp } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 
 interface DashboardProps {
   onNavigate: () => void;
 }
 
 export function Dashboard({ onNavigate }: DashboardProps) {
-  const recentBookings = [
-    { id: 1, hotel: 'Grand Plaza Hotel', location: 'New York', date: 'Dec 20-23, 2024', status: 'Confirmed' },
-    { id: 2, hotel: 'Beach Resort Paradise', location: 'Miami', date: 'Jan 5-10, 2025', status: 'Pending' },
-  ];
+  const [recentBookings, setRecentbookings] = useState([]);
 
-  const notifications = [
-    { id: 1, message: 'Your booking at Grand Plaza Hotel is confirmed!', time: '2 hours ago' },
-    { id: 2, message: 'Special offer: 20% off on weekend stays', time: '5 hours ago' },
-  ];
+  const [notifications, setNotifications] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const result = await getItems();
+        setData(result);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
 
   return (
     <div className="min-h-screen">
