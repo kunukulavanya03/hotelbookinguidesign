@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Calendar, Users, Bed, Check, MapPin, Star, Wifi, Coffee, Dumbbell, ParkingCircle, UtensilsCrossed, MessageCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 
 interface BookingProps {
   hotel: any;
@@ -12,6 +13,24 @@ export function Booking({ hotel, onNavigate }: BookingProps) {
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState(1);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const result = await getItems();
+        setData(result);
+        setError(null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
+
 
   const rooms = [
     {
