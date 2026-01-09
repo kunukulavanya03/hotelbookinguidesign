@@ -4,6 +4,7 @@ import { Dashboard } from './components/Dashboard';
 import { Search } from './components/Search';
 import { Booking } from './components/Booking';
 import { Payment } from './components/Payment';
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 
 type Screen = 'login' | 'dashboard' | 'search' | 'booking' | 'payment';
 
