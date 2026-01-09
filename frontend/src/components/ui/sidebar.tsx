@@ -18,6 +18,7 @@ import {
   SheetTitle,
 } from "./sheet";
 import { Skeleton } from "./skeleton";
+import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
 import {
   Tooltip,
   TooltipContent,
