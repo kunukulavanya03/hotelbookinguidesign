@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text, Float, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -7,26 +7,141 @@ Base = declarative_base()
 
 class User(Base):
     __tablename__ = "users"
-    
     id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True, nullable=False)
-    username = Column(String, unique=True, index=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
-    is_active = Column(Boolean, default=True)
+    email = Column(String, unique=True, index=True)
+    username = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-class Item(Base):
-    __tablename__ = "items"
-    
+class Fields(Base):
+    __tablename__ = "fieldss"
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True, nullable=False)
+    HARDCODED = Column(Integer)
+    to = Column(DateTime)
+    hover = Column(String, index=True)
+    Context = Column(DateTime)
+    sm = Column(String, index=True)
+    selected = Column(String, index=True)
+    id = Column(String, index=True)
+    focus = Column(String, index=True)
+    button = Column(String, index=True)
+    skeleton = Column(String, index=True)
+    normal = Column(String, index=True)
+    placeholder = Column(String, index=True)
+    file = Column(String, index=True)
+    selection = Column(String, index=True)
+    name = Column(String, index=True)
     description = Column(Text)
-    owner_id = Column(Integer, ForeignKey("users.id"))
-    is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
-    owner = relationship("User", back_populates="items")
 
-User.items = relationship("Item", back_populates="owner")
+class Data(Base):
+    __tablename__ = "datas"
+    id = Column(Integer, primary_key=True, index=True)
+    HARDCODED = Column(Integer)
+    to = Column(DateTime)
+    hover = Column(String, index=True)
+    Context = Column(DateTime)
+    sm = Column(String, index=True)
+    selected = Column(String, index=True)
+    id = Column(String, index=True)
+    focus = Column(String, index=True)
+    button = Column(String, index=True)
+    skeleton = Column(String, index=True)
+    normal = Column(String, index=True)
+    placeholder = Column(String, index=True)
+    file = Column(String, index=True)
+    selection = Column(String, index=True)
+    name = Column(String, index=True)
+    description = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class Database(Base):
+    __tablename__ = "databases"
+    id = Column(Integer, primary_key=True, index=True)
+    HARDCODED = Column(Integer)
+    to = Column(DateTime)
+    hover = Column(String, index=True)
+    Context = Column(DateTime)
+    sm = Column(String, index=True)
+    selected = Column(String, index=True)
+    id = Column(String, index=True)
+    focus = Column(String, index=True)
+    button = Column(String, index=True)
+    skeleton = Column(String, index=True)
+    normal = Column(String, index=True)
+    placeholder = Column(String, index=True)
+    file = Column(String, index=True)
+    selection = Column(String, index=True)
+    name = Column(String, index=True)
+    description = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class Restaurant(Base):
+    __tablename__ = "restaurants"
+    id = Column(Integer, primary_key=True, index=True)
+    HARDCODED = Column(Integer)
+    to = Column(DateTime)
+    hover = Column(String, index=True)
+    Context = Column(DateTime)
+    sm = Column(String, index=True)
+    selected = Column(String, index=True)
+    id = Column(String, index=True)
+    focus = Column(String, index=True)
+    button = Column(String, index=True)
+    skeleton = Column(String, index=True)
+    normal = Column(String, index=True)
+    placeholder = Column(String, index=True)
+    file = Column(String, index=True)
+    selection = Column(String, index=True)
+    name = Column(String, index=True)
+    description = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class Order(Base):
+    __tablename__ = "orders"
+    id = Column(Integer, primary_key=True, index=True)
+    HARDCODED = Column(Integer)
+    to = Column(DateTime)
+    hover = Column(String, index=True)
+    Context = Column(DateTime)
+    sm = Column(String, index=True)
+    selected = Column(String, index=True)
+    id = Column(String, index=True)
+    focus = Column(String, index=True)
+    button = Column(String, index=True)
+    skeleton = Column(String, index=True)
+    normal = Column(String, index=True)
+    placeholder = Column(String, index=True)
+    file = Column(String, index=True)
+    selection = Column(String, index=True)
+    name = Column(String, index=True)
+    description = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class Function(Base):
+    __tablename__ = "functions"
+    id = Column(Integer, primary_key=True, index=True)
+    HARDCODED = Column(Integer)
+    to = Column(DateTime)
+    hover = Column(String, index=True)
+    Context = Column(DateTime)
+    sm = Column(String, index=True)
+    selected = Column(String, index=True)
+    id = Column(String, index=True)
+    focus = Column(String, index=True)
+    button = Column(String, index=True)
+    skeleton = Column(String, index=True)
+    normal = Column(String, index=True)
+    placeholder = Column(String, index=True)
+    file = Column(String, index=True)
+    selection = Column(String, index=True)
+    name = Column(String, index=True)
+    description = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
