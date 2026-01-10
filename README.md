@@ -43,17 +43,27 @@ cd backend
 
 ## Features
 
-- user_authentication
-- room_booking
-- availability_management
+- User registration and login
+- Hotel search based on location, dates, and guests
+- Hotel details view with rooms and amenities
+- Booking management (create, view, cancel)
+- Admin panel for hotel and room management
+- JWT authentication
+- Data validation
+- Error handling
 
 ## API Endpoints
 
-- `POST /api/auth/register` - Endpoint for user registration.
-- `POST /api/auth/login` - Endpoint for user login.
-- `GET /api/rooms/{date}` - Endpoint to get available rooms on a specific date.
-- `POST /api/rooms/book` - Endpoint to book a room.
-- `POST /api/admin/rooms/update_availability` - Endpoint for admin to update room availability.
+- `POST /api/auth/register` - Registers a new user.
+- `POST /api/auth/login` - Logs in an existing user.
+- `GET /api/hotels` - Retrieves a list of hotels, optionally filtered by location, dates, and number of guests.
+- `GET /api/hotels/{hotel_id}` - Retrieves details for a specific hotel.
+- `POST /api/bookings` - Creates a new booking.
+- `GET /api/bookings/{booking_id}` - Retrieves details for a specific booking.
+- `GET /api/users/{user_id}/bookings` - Retrieves all bookings for a specific user.
+- `DELETE /api/bookings/{booking_id}` - Cancels a booking.
+- `POST /api/admin/hotels` - Adds a new hotel (Admin only).
+- `PUT /api/admin/hotels/{hotel_id}` - Updates an existing hotel (Admin only).
 
 ## License
 
