@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
+import { createAuthlogin, createAuthregister, getUsers{user_id}bookings, deleteAdminrooms{room_id}, getBookings{booking_id}, createAdminhotels{hotel_id}rooms, getHotels, deleteBookings{booking_id}, createAdminhotels, register } from './services/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
