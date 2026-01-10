@@ -68,16 +68,48 @@ export const api_auth_login = async (data) => {
   const response = await api.post('/api/auth/login', data);
   return response.data;
 };
-export const api_rooms_{date} = async (params = {}) => {
-  const response = await api.get('/api/rooms/{date}', { params });
+export const api_hotels = async (params = {}) => {
+  const response = await api.get('/api/hotels', { params });
   return response.data;
 };
-export const api_rooms_book = async (data) => {
-  const response = await api.post('/api/rooms/book', data);
+export const api_hotels_{hotel_id} = async (params = {}) => {
+  const response = await api.get('/api/hotels/{hotel_id}', { params });
   return response.data;
 };
-export const api_admin_rooms_update_availability = async (data) => {
-  const response = await api.post('/api/admin/rooms/update_availability', data);
+export const api_bookings = async (data) => {
+  const response = await api.post('/api/bookings', data);
+  return response.data;
+};
+export const api_bookings_{booking_id} = async (params = {}) => {
+  const response = await api.get('/api/bookings/{booking_id}', { params });
+  return response.data;
+};
+export const api_users_{user_id}_bookings = async (params = {}) => {
+  const response = await api.get('/api/users/{user_id}/bookings', { params });
+  return response.data;
+};
+export const api_bookings_{booking_id} = async (id) => {
+  const response = await api.delete(`/api/bookings/{booking_id}/${id}`);
+  return response.data;
+};
+export const api_admin_hotels = async (data) => {
+  const response = await api.post('/api/admin/hotels', data);
+  return response.data;
+};
+export const api_admin_hotels_{hotel_id} = async (id, data) => {
+  const response = await api.put(`/api/admin/hotels/{hotel_id}/${id}`, data);
+  return response.data;
+};
+export const api_admin_hotels_{hotel_id}_rooms = async (data) => {
+  const response = await api.post('/api/admin/hotels/{hotel_id}/rooms', data);
+  return response.data;
+};
+export const api_admin_rooms_{room_id} = async (id, data) => {
+  const response = await api.put(`/api/admin/rooms/{room_id}/${id}`, data);
+  return response.data;
+};
+export const api_admin_rooms_{room_id} = async (id) => {
+  const response = await api.delete(`/api/admin/rooms/{room_id}/${id}`);
   return response.data;
 };
 
