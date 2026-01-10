@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createAuthregister, createAuthlogin, login, createAdminroomsupdate_availability, createRoomsbook, register, logout, getRooms{date} } from './services/api';
+import { createAuthlogin, createAuthregister, getUsers{user_id}bookings, deleteAdminrooms{room_id}, getBookings{booking_id}, createAdminhotels{hotel_id}rooms, getHotels, deleteBookings{booking_id}, createAdminhotels, register } from './services/api';
 
 const MOBILE_BREAKPOINT = 768;
 
