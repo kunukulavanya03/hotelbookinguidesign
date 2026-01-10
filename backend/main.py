@@ -9,7 +9,7 @@ from database import get_db, engine
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="Hotelbookinguidesign_Is_A_Backend_Api_Designed_To_Support_The_Frontend_Application_Developed_With_React._The_Backend_Will_Use_Fastapi_For_Its_Lightweight_And_Fast_Performance,_Paired_With_Sqlalchemy_For_Database_Operations._This_Api_Will_Handle_User_Authentication,_Booking_Management,_And_Room_Availability. API",
+    title="This_Project_Defines_The_Backend_Api_For_Hotelbookinguidesign,_A_Hotel_Booking_Platform._The_Api_Is_Built_Using_Fastapi_And_Sqlalchemy,_Providing_A_Restful_Interface_For_Managing_Hotels,_Rooms,_Bookings,_And_User_Accounts._It_Is_Designed_To_Be_Consumed_By_A_React-Based_Frontend. API",
     description="Generated from Impact Analysis specifications",
     version="1.0.0"
 )
@@ -33,7 +33,7 @@ def root():
 
 @app.get("/health")
 def health():
-    return {"status": "healthy", "service": "hotelbookinguidesign_is_a_backend_api_designed_to_support_the_frontend_application_developed_with_react._the_backend_will_use_fastapi_for_its_lightweight_and_fast_performance,_paired_with_sqlalchemy_for_database_operations._this_api_will_handle_user_authentication,_booking_management,_and_room_availability."}
+    return {"status": "healthy", "service": "this_project_defines_the_backend_api_for_hotelbookinguidesign,_a_hotel_booking_platform._the_api_is_built_using_fastapi_and_sqlalchemy,_providing_a_restful_interface_for_managing_hotels,_rooms,_bookings,_and_user_accounts._it_is_designed_to_be_consumed_by_a_react-based_frontend."}
 
 # Generated API endpoints
 @app.put("/30")
